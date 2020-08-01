@@ -2,9 +2,8 @@ package com.example.project;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
 import java.util.regex.*;
 import java.io.*;
 
@@ -22,12 +21,12 @@ public class TestMain{
     private String getOutput() {
         return testOut.toString();
     }
-    @BeforeAll
+    @BeforeEach
     public void setUp() {
         testOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(testOut));
     }
-    @AfterAll
+    @AfterEach
     public void tearDown() {
         System.setIn(systemIn);
         System.setOut(systemOut);
@@ -55,7 +54,7 @@ public class TestMain{
         assertTrue(m.find(), "Expected string matching 'You got it!$'. Got: "+actual);
     }
     @Test
-    public void testHigh(){
+    public  void testHigh(){
         String expectedString = "Too high!\n";
         String testString = "101";
         for (int i = 100; i > 0; i--){
